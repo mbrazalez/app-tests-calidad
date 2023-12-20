@@ -1,0 +1,14 @@
+runtime: nodejs16
+
+instance_class: F2
+
+env_variables: 
+  BUCKET_NAME: "angular-forms-calidad-2023-dev"
+
+handlers:
+- url: /
+  static_files: dist/bases/index.html
+  upload: dist/bases/index.html
+
+- url: /
+  static_dir: dist/bases

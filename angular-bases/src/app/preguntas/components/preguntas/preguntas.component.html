@@ -1,0 +1,54 @@
+<div class="form-container">
+    <select class="form-control" id="DropdownOptions" [(ngModel)]="puntoSeleccionado" (ngModelChange)="onPuntoSeleccionadoChange()">
+        <option *ngFor="let punto of puntos" [value]="punto.value">
+            {{ punto.viewValue }}
+        </option>
+    </select>
+
+
+
+    <form>
+        <ng-container *ngFor="let pregunta of preguntasMostradas; let i = index">
+            <div *ngIf="i % 5 === 0" class="mb-6">
+                <fieldset>
+                    <label class="font-medium tracking-tighter text-gray-500 md:text-lg dark:text-gray-400">{{ preguntasMostradas[i] }}</label>
+                    
+                    <div class="flex-col space-y-4">
+                        <div class="flex items-center mb-4">
+                            <input [(ngModel)]="respuestaSeleccionada" id="ioption-1" type="radio" name="form" [value]="preguntasMostradas[i + 1]" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="option-1" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> 
+                                {{ preguntasMostradas[i + 1] }}
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4">
+                            <input [(ngModel)]="respuestaSeleccionada" id="ioption-2" type="radio" name="form" [value]="preguntasMostradas[i + 2]" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="option-2" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> 
+                                {{ preguntasMostradas[i + 2] }}
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4">
+                            <input  [(ngModel)]="respuestaSeleccionada" id="ioption-3" type="radio" name="form" [value]="preguntasMostradas[i + 3]" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="option-3" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> 
+                                {{ preguntasMostradas[i + 3] }}
+                            </label>
+                        </div>
+
+                        <div class="flex items-center mb-4">
+                            <input [(ngModel)]="respuestaSeleccionada" id="ioption-4" type="radio" name="form" [value]="preguntasMostradas[i + 4]" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="option-4" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">  
+                                {{ preguntasMostradas[i + 4] }}
+                            </label>
+                        </div>
+                    </div>
+                    <button (click)="comprobarRespuesta(respuestaSeleccionada, i)" type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-xs px-5 py-2.5 text-center me-1 mb-1">Comprobar respuesta</button>            
+                    <div *ngIf="correccionPreguntas[i] !== null" class="p-4 mb-4 text-sm rounded-lg" [ngClass]="{'bg-blue-50 text-blue-800': correccionPreguntas[i], 'bg-red-50 text-red-800': correccionPreguntas[i] === false, 'dark:bg-gray-800 dark:text-blue-400': correccionPreguntas[i], 'dark:bg-gray-800 dark:text-red-400': correccionPreguntas[i] === false}" role="alert">
+                        <span *ngIf="correccionPreguntas[i]==true"> Correcto -> {{ mostrarRespuestaCorrecta(preguntasMostradas[i]) }}</span>
+                        <span *ngIf="correccionPreguntas[i]==false"> Telenovela Nelsonnnnn!</span>
+                    </div>
+                </fieldset>
+            </div>
+        </ng-container>
+    </form>
+</div>
